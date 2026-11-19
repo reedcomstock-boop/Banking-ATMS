@@ -13,11 +13,12 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-a", help="account name (required)")
     parser.add_argument("-p", help="port number", type=int)
-    # TODO: add more arguments (check out the argparse docs)
-    parser.add_argument("-s", help="server IP address", type=str)
-    parser.add_argument("-m", help="message to send", type=str)//temp
-    parser.add_argument("-f", help="file to send", type=str)//temp
-    parser.add_argument("-l", help="log file", type=str)
+    parser.add_argument("-s", help="auth file", type=str)
+    parser.add_argument("-i", help="IP address", type=str)
+    parser.add_argument("-n", help="new account balance", type=float)
+    parser.add_argument("-d", help="deposit amount", type=float)
+    parser.add_argument("-w", help="withdraw amount", type=float)
+    parser.add_argument("-g", help="get account balance", action="store_true")
     parser.add_argument("-c", help="card number", type=str)
 
     args = parser.parse_args()
