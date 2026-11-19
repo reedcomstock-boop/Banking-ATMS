@@ -14,6 +14,12 @@ def main():
     parser.add_argument("-a", help="account name (required)")
     parser.add_argument("-p", help="port number", type=int)
     # TODO: add more arguments (check out the argparse docs)
+    parser.add_argument("-s", help="server IP address", type=str)
+    parser.add_argument("-m", help="message to send", type=str)//temp
+    parser.add_argument("-f", help="file to send", type=str)//temp
+    parser.add_argument("-l", help="log file", type=str)
+    parser.add_argument("-c", help="card number", type=str)
+
     args = parser.parse_args()
 
     # Create a client TCP socket
@@ -21,13 +27,17 @@ def main():
 
     # Connect to the server
     # TODO: replace the hardcoded IP and port with command line arguments
-    client_sock.connect(('127.0.0.1', 3000))
-
+    //client_sock.connect(('127.0.0.1', 3000))
+    client_sock.connect((args.s, args.p))
 
     # Send/receive some data
     # TODO: do something more interesting than send 'Hello world!'!
     # Note that Python's send and recv methods expect bytes! check out encode + decode methods
-    client_sock.sendall(b'Hello world!')
+    if args.m:
+        client_sock.sendall(args.m.encode())
+    elif args.f:
+        with open(args.f, 'rb') as f:
+            client_sock.sendall(f.read())
     client_sock.shutdown(socket.SHUT_WR)
 
     chunks = []

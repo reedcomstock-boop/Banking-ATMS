@@ -9,7 +9,12 @@ from os import _exit as quit
 
 def main():
     # TODO: parse arguments (see example in atm.py)
-
+    # Parse arguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-a", help="account name (required)")
+    parser.add_argument("-p", help="port number", type=int)
+    parser.add_argument("-s", help="auth file", type=str)
+    
     # Set up socket
     serv_sock = socket.socket(
         socket.AF_INET,      # IPv4 Internet socket
